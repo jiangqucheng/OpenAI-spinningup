@@ -25,8 +25,9 @@ def sync_all_params():
     """Sync all tf variables across MPI processes."""
     return sync_params(tf.global_variables())
 
-
-class MpiAdamOptimizer(tf.train.AdamOptimizer):
+# tf.train.AdamOptimizer() => tf.optimizers.Adam()
+# TFV1->TFV2 : From https://www.tensorflow.org/versions/r2.0/api_docs/python/tf/optimizers
+class MpiAdamOptimizer(tf.optimizers.Adam):
     """
     Adam optimizer that averages gradients across MPI processes.
 
