@@ -175,6 +175,9 @@ def parse_and_execute_grid_search(cmd, args):
 
     # Construct and execute the experiment grid.
     eg = ExperimentGrid(name=exp_name)
+
+    print("arg_dict:", arg_dict)
+
     for k,v in arg_dict.items():
         eg.add(k, v, shorthand=given_shorthands.get(k))
     eg.run(algo, **run_kwargs)
